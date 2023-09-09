@@ -30,28 +30,3 @@ async function fetchGetAPI (url) {
     return response
 };
 
-
-// TODO: consertar o acentos 
-var teste = fetchGetAPI('http://127.0.0.1:5000').then((response) => response.body)
-  .then((bodyStream) => {
-    const reader = bodyStream.getReader();
-    return reader.read();
-  })
-  .then((result) => {
-    const bodyContent = new TextDecoder('utf-8').decode(result.value);
-    console.log('asd', bodyContent);
-    return bodyContent
-  })
-  .catch((error) => {
-    console.error(error);
-  });
-
-  var teste2 = fetchGetAPI('http://127.0.0.1:5000')
-  .then((response) => response.json())
-  .then((json) => {
-    console.log('asd', json);
-    // Process the JSON data here
-  })
-  .catch((error) => {
-    console.error(error);
-  });

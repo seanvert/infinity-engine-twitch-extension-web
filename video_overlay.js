@@ -21,43 +21,34 @@ const characters = fetchGetAPI('http://127.0.0.1:5000').then((response) => respo
 })
 .then((result) => {
   const bodyContent = new TextDecoder('utf-8').decode(result.value);
-  console.log('asd', bodyContent);
   return bodyContent
 })
 .catch((error) => {
   console.error(error);
 });
 
-var teste2 = fetchGetAPI('http://127.0.0.1:5000')
-.then((response) => response.json())
-.then((json) => {
-  console.log('asd', json);
-  // Process the JSON data here
-})
-.catch((error) => {
-  console.error(error);
-});
+
 
 // access the api endpoint and gets a json with the characters that will be rendered into the element
 async function get_characters() {
     // get the element with id "characters"
     var characters = document.getElementById('characters');
     // get the characters from the api endpoint
-    const response = await fetch('http://127.0.0.1:5000');
+    var response = await fetch('http://127.0.0.1:5000');
     // get the json from the response
-    const data = await response.json();
+    var data = await response.json();
     // get the characters from the json
-    const characters_list = data.characters;
+    const characters_list = await JSON.parse(data.characters);
     // loop through the characters and render them into the element
     for (let i = 0; i < characters_list.length; i++) {
         // get the character from the list
         const character = characters_list[i];
-        console.log(character); 
         // render the character into the element
+        const portrait = character.creature.small_portrait.replace(/\u0000/g, '');;
         characters.innerHTML += `
         <div class="character_card tooltip">
-            <img src="./assets/img/${character.portrait}.bmp" alt="${character.name}">
-            <span class="tooltiptext"><h3>${character.name}</h3></span>
+            <img src="./assets/img/${portrait}.bmp" alt="${character.member.character_name}">
+            <span class="tooltiptext"><h3>${character.member.character_name}</h3></span>
         </div>
         `;
     }
