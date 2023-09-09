@@ -6,16 +6,42 @@
     <link rel="stylesheet" href="video_overlay.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <title>twich extension</title>
+    <style>
+        /* Tooltip CSS */
+        .tooltip {
+          position: relative;
+          display: inline-block;
+          cursor: help;
+        }
+    
+        .tooltip .tooltiptext {
+          visibility: hidden;
+          width: 150px;
+          background-color: #333;
+          color: #fff;
+          text-align: center;
+          border-radius: 5px;
+          padding: 5px;
+          position: absolute;
+          z-index: 1;
+          bottom: 60%;
+          left: 80%;
+          opacity: 0;
+          transition: opacity 0.3s;
+        }
+    
+        .tooltip:hover .tooltiptext {
+          visibility: visible;
+          opacity: 1;
+        }
+      </style>
 </head>
 <body>
-    <div class="flex flex-col w-1/12 min-h-100">
-        <img src="./assets/img/PORTRT0.bmp" alt="">
-        <img src="./assets/img/PORTRT1.bmp" alt="">
-        <img src="./assets/img/PORTRT2.bmp" alt="">
-        <img src="./assets/img/PORTRT3.bmp" alt="">
-        <img src="./assets/img/PORTRT4.bmp" alt="">
-        <img src="./assets/img/PORTRT5.bmp" alt="">
+    <!-- script that will load when the page opens -->
+    
+    <div id="characters" class="flex flex-col w-1/12 min-h-100">
     </div>
+    <script src="./video_overlay.js"></script>
     <script src="./teste.js"></script>
     <script src="https://extension-files.twitch.tv/helper/v1/twitch-ext.min.js"></script>
 </body>
